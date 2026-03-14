@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishiraj Singh | SAP BTP Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px;
+            max-height: 280px;
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #2563eb, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .code-window {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-700">
+
+    <!-- Chosen Palette: Slate & Blue Harmony - Grounded in Slate-50/900 for professional depth with Indigo/Blue-600 accents for technical vibrancy. -->
+    <!-- Application Structure Plan: The SPA is structured as a non-linear professional dashboard. It begins with a data-driven Hero section (quantitative overview), moves to a thematic Technical Proficiency matrix, followed by a filterable Project Explorer to facilitate deep-dives into specific competencies (SAP vs Web). It concludes with a high-impact Trajectory visualization. This structure was chosen to prioritize "speed-to-insight" for recruiters and hiring managers. -->
+    <!-- Visualization & Content Choices: 
+         - Professional Tenure -> Goal: Inform -> Live Timer (JS) -> Real-time updates.
+         - Technical Balance -> Goal: Compare -> Donut Chart (Chart.js/Canvas) -> Justification: Shows the multi-disciplinary nature of a BTP developer.
+         - Project Gallery -> Goal: Organize -> Interactive Filter (JS) -> Justification: Allows users to focus on specific tech stacks.
+         - NO SVG/Mermaid used. CSS/Unicode icons utilized throughout. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">R</div>
+                <span class="font-bold text-xl tracking-tight hidden sm:block">Rishiraj Singh</span>
+            </div>
+            <div class="flex items-center space-x-4 md:space-x-8">
+                <a href="#projects" class="text-sm font-medium hover:text-blue-600 transition-colors">Projects</a>
+                <a href="#skills" class="text-sm font-medium hover:text-blue-600 transition-colors">Skills</a>
+                <a href="https://www.linkedin.com/in/rishiraj-singh-b70502287/" target="_blank" class="p-2 bg-white/50 rounded-full hover:bg-blue-100 transition-colors text-slate-600 hover:text-blue-600 border border-slate-200">
+                    <span class="text-lg leading-none">&#128188;</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-100">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                        </span>
+                        <span>Available for BTP Opportunities</span>
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900">
+                        Building the <span class="gradient-text">Enterprise Cloud</span>
+                    </h1>
+                    <p class="text-xl text-slate-600 leading-relaxed max-w-2xl">
+                        SAP developer specializing in SAP BTP, SAP CAP, and SAP UI5. Skilled in designing OData V4 services and enterprise applications on Cloud Foundry.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                            Explore Projects
+                        </a>
+                        <a href="https://github.com/wabrishi" target="_blank" class="px-8 py-4 bg-white border border-slate-200 hover:border-blue-300 text-slate-700 font-semibold rounded-xl transition-all flex items-center space-x-2">
+                            <span>&#128187;</span>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                    <div class="flex items-center space-x-8 pt-4">
+                        <div>
+                            <div id="exp-years" class="text-2xl font-bold text-slate-900">--</div>
+                            <div class="text-sm text-slate-500 uppercase tracking-wider font-semibold">Live Tenure</div>
+                        </div>
+                        <div class="w-px h-10 bg-slate-200"></div>
+                        <div>
+                            <div class="text-2xl font-bold text-slate-900">SAP BTP</div>
+                            <div class="text-sm text-slate-500 uppercase tracking-wider font-semibold">Specialization</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -inset-4 bg-gradient-to-tr from-blue-600/10 to-indigo-600/10 rounded-[2rem] blur-2xl"></div>
+                    <div class="relative bg-white p-8 rounded-[2rem] border border-slate-200 code-window overflow-hidden group">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            <span class="text-slate-400 font-mono text-xs">developer.js</span>
+                        </div>
+                        <div class="space-y-4 font-mono text-sm">
+                            <p class="text-blue-600 italic">// Professional Profile</p>
+                            <p class="text-slate-700">const dev = {</p>
+                            <p class="pl-4 text-slate-700">role: <span class="text-emerald-600">"SAP BTP Developer"</span>,</p>
+                            <p class="pl-4 text-slate-700">skills: [<span class="text-orange-600">"CAP"</span>, <span class="text-orange-600">"UI5"</span>, <span class="text-orange-600">"BTP"</span>],</p>
+                            <p class="pl-4 text-slate-700">focus: <span class="text-emerald-600">"Cloud Modernization"</span></p>
+                            <p class="text-slate-700">};</p>
+                        </div>
+                        <div class="mt-8 pt-8 border-t border-slate-100">
+                            <div class="chart-container">
+                                <canvas id="skillChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Technical Proficiency</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">An introductory analysis of my core competencies, centered on SAP's modern cloud programming model and full-stack integration.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="skills-grid">
+                <!-- Skill cards injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Featured Projects</h2>
+                    <p class="text-slate-600 italic">Filter through enterprise-grade implementations and data-processing systems.</p>
+                </div>
+                <div class="flex bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
+                    <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-blue-600 text-white">All</button>
+                    <button onclick="filterProjects('sap')" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-500 hover:text-slate-800">SAP</button>
+                    <button onclick="filterProjects('web')" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-500 hover:text-slate-800">Web/AI</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                <!-- Project cards injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience / Trajectory Section -->
+    <section class="py-24 bg-slate-900 text-white overflow-hidden relative">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-8">Professional Trajectory</h2>
+                    <div class="space-y-12">
+                        <div class="relative pl-8 border-l border-white/20">
+                            <div class="absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+                            <div class="text-blue-400 font-bold mb-1">Current Path</div>
+                            <h4 class="text-xl font-bold mb-2">SAP BTP / Full-Stack Developer</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Driving enterprise modernization by building OData V4 services and optimized UI5 applications. Focused on efficient data binding and Cloud Foundry stability.
+                            </p>
+                        </div>
+                        <div class="relative pl-8 border-l border-white/20">
+                            <div class="absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full bg-slate-600"></div>
+                            <div class="text-slate-500 font-bold mb-1">Foundational Period</div>
+                            <h4 class="text-xl font-bold mb-2">Specialized Training</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Intense 6-month immersion into the SAP ecosystem, MTA architectures, and cloud-native development patterns.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-[2.5rem]">
+                    <h3 class="text-2xl font-bold mb-6">Expertise Highlights</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <span class="text-blue-400 text-2xl font-bold">01</span>
+                            <div>
+                                <h5 class="font-bold">BTP Deployment</h5>
+                                <p class="text-slate-400 text-sm">Expertise in CF, MTA, and routing logic.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <span class="text-indigo-400 text-2xl font-bold">02</span>
+                            <div>
+                                <h5 class="font-bold">OData & Data Modeling</h5>
+                                <p class="text-slate-400 text-sm">Designing complex V4 services with optimized CDS.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <span class="text-emerald-400 text-2xl font-bold">03</span>
+                            <div>
+                                <h5 class="font-bold">Advanced UI5</h5>
+                                <p class="text-slate-400 text-sm">Fragment reuse and dynamic component cloning.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-16 border-t border-slate-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold">R</div>
+                        <span class="font-bold text-lg">Rishiraj Singh</span>
+                    </div>
+                    <p class="text-slate-500 text-sm italic">Modernizing enterprise cores through clean, efficient code.</p>
+                </div>
+                <div class="flex space-x-6 text-2xl">
+                    <a href="https://www.linkedin.com/in/rishiraj-singh-b70502287/" target="_blank" class="text-slate-400 hover:text-blue-600 transition-all">&#128188;</a>
+                    <a href="https://github.com/wabrishi" target="_blank" class="text-slate-400 hover:text-slate-900 transition-all">&#128187;</a>
+                    <a href="mailto:rishirajsingh@example.com" class="text-slate-400 hover:text-red-500 transition-all">&#9993;</a>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-slate-50 flex flex-col md:flex-row justify-between text-slate-400 text-xs uppercase tracking-widest">
+                <p>&copy; <span id="year"></span> Rishiraj Singh. Code is Life.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <span>SAP BTP Developer</span>
+                    <span>Full-Stack Engineer</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Definitions
+        const skillsData = [
+            { category: "SAP Stack", icon: "&#9729;", items: ["BTP", "CAP (CAPM)", "UI5 / OpenUI5", "OData V4", "Business Application Studio", "Cloud Foundry"] },
+            { category: "Frontend", icon: "&#128187;", items: ["JavaScript (ES6+)", "XML Views", "UI5 Fragments", "Data Binding", "Tailwind CSS"] },
+            { category: "Backend/AI", icon: "&#9881;", items: ["Node.js", "CDS Modeling", "Python", "Deep Learning", "JSON Processing"] }
+        ];
+
+        const projectsData = [
+            { type: "sap", title: "SAP CAPM + UI5 Fullstack", desc: "Enterprise-grade OData V4 application with CF deployment.", tags: ["CAP", "UI5", "BTP"], highlights: ["Routing with xs-app.json", "End-to-end CF deployment"] },
+            { type: "sap", title: "Dynamic UI5 Enterprise App", desc: "Advanced UI5 app featuring complex dynamic page creation.", tags: ["UI5", "XML Fragments"], highlights: ["Dynamic control creation", "Template cloning"] },
+            { type: "sap", title: "Vehicle Inspection System", desc: "Managing large hierarchical vehicle test results via UI5.", tags: ["UI5", "JSON"], highlights: ["Deep payload handling", "Data visualization"] },
+            { type: "sap", title: "Hierarchical File Manager", desc: "UI5-based system for nested folders and file listings.", tags: ["UI5", "Architecture"], highlights: ["Recursive data binding", "Custom UI structure"] },
+            { type: "web", title: "Dynamic PDF Gen Engine", desc: "Custom template engine for A4 printable documents.", tags: ["JS", "HTML/CSS"], highlights: ["Print optimization", "Asset rendering"] },
+            { type: "web", title: "AI Vehicle Recognition", desc: "Number plate and color detection via Deep Learning.", tags: ["Python", "Computer Vision"], highlights: ["Plate recognition", "Object detection"] }
+        ];
+
+        // Initialization
+        window.onload = function() {
+            initExperience();
+            initCharts();
+            renderSkills();
+            renderProjects();
+            
+            document.getElementById('year').innerText = new Date().getFullYear();
+            
+            // Scroll behavior
+            window.onscroll = function() {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    nav.classList.add('glass-nav', 'shadow-sm', 'py-4');
+                    nav.classList.remove('py-6');
+                } else {
+                    nav.classList.remove('glass-nav', 'shadow-sm', 'py-4');
+                    nav.classList.add('py-6');
+                }
+            };
+        };
+
+        function initExperience() {
+            const start = new Date('2024-06-01'); // Career Start
+            const today = new Date();
+            let totalMonths = (today.getFullYear() - start.getFullYear()) * 12 + (today.getMonth() - start.getMonth());
+            
+            const years = Math.floor(totalMonths / 12);
+            const months = totalMonths % 12;
+            document.getElementById('exp-years').innerText = `${years}.${months}y`;
+        }
+
+        function initCharts() {
+            const ctx = document.getElementById('skillChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['SAP BTP', 'UI5/Frontend', 'Backend/AI'],
+                    datasets: [{
+                        data: [45, 35, 20],
+                        backgroundColor: ['#2563eb', '#6366f1', '#10b981'],
+                        borderWidth: 0,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+                    },
+                    cutout: '70%'
+                }
+            });
+        }
+
+        function renderSkills() {
+            const grid = document.getElementById('skills-grid');
+            skillsData.forEach(s => {
+                const card = `
+                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all duration-300">
+                        <div class="text-3xl mb-4">${s.icon}</div>
+                        <h3 class="text-xl font-bold mb-4">${s.category}</h3>
+                        <ul class="space-y-3">
+                            ${s.items.map(i => `<li class="flex items-center text-slate-600 text-sm italic">&#8212; ${i}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function renderProjects() {
+            const grid = document.getElementById('projects-grid');
+            projectsData.forEach((p, i) => {
+                const card = `
+                    <div class="project-card group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-500" data-type="${p.type}">
+                        <div class="p-6">
+                            <div class="text-xs font-bold text-blue-600 mb-2 uppercase tracking-widest">${p.type} Project</div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">${p.title}</h3>
+                            <p class="text-slate-600 text-sm mb-6">${p.desc}</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                ${p.tags.map(t => `<span class="px-2 py-1 bg-slate-100 text-slate-500 rounded text-[10px] font-bold">${t}</span>`).join('')}
+                            </div>
+                            <div class="space-y-1">
+                                ${p.highlights.map(h => `<div class="text-xs text-slate-400 flex items-center"><span class="w-1 h-1 bg-blue-400 rounded-full mr-2"></span>${h}</div>`).join('')}
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-slate-50 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">Interactive Build</span>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function filterProjects(type) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => {
+                if(btn.innerText.toLowerCase().includes(type)) {
+                    btn.classList.add('bg-blue-600', 'text-white');
+                    btn.classList.remove('text-slate-500');
+                } else {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('text-slate-500');
+                }
+            });
+
+            cards.forEach(card => {
+                if(type === 'all' || card.getAttribute('data-type') === type) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
